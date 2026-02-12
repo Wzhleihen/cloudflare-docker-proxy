@@ -1,17 +1,3 @@
-import DOCS from './help.html'
- 
-// return docs
-if (url.pathname === "/") {
-  return new Response(DOCS, {
-    status: 200,
-    headers: {
-      "content-type": "text/html"
-    }
-  });
-}
-
-
-
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
@@ -36,6 +22,7 @@ const routes = {
   ["docker-staging." + CUSTOM_DOMAIN]: dockerHub,
 };
 
+
 function routeByHosts(host) {
   if (host in routes) {
     return routes[host];
@@ -45,6 +32,7 @@ function routeByHosts(host) {
   }
   return "";
 }
+import DOCS from './help.html'
 
 async function handleRequest(request) {
   const url = new URL(request.url);
